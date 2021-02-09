@@ -1,0 +1,33 @@
+<!--Header-->
+    <header>
+        <nav class="navbar navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="site-nav-wrapper">
+                    
+                    <div class="navbar-header">
+                    
+                    <!--Logo-->
+                    <a href="#home" class="navbar-brand smooth-scroll">
+                    <img src="../img/logo-dark.png" alt="logo">
+                    <h4 class="navbar-brand">Notes Marketplace<br><span>Learning is a lifelong process.</span></h4>
+                    </a>
+                    </div>
+                    
+                    <!--Main Menu-->
+                    <div class="container">
+                        <div class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav pull-right">
+                                <li><a class="" href="#home">Search Notes</a></li>
+                                <li><a class="" href="#about">Sell Your Notes</a></li>
+                                <li><a class="" href="#team">FAQ</a></li>
+                                <li><a class="" href="#services">Contact Us</a></li>
+                                <li><a class="" href="#portfolio">Login</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!--Header ends-->
