@@ -7,7 +7,7 @@
 var modal = document.getElementById("myModal");
 
 // Get the button that opens the modal
-var btn = document.getElementsByClassName("download");
+var btn = document.getElementById("download");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
@@ -28,10 +28,6 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
-
-
-
-
 
 
 
