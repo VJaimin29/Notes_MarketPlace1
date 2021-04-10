@@ -1,0 +1,269 @@
+﻿@model IEnumerable<NotesMarketPlace.Models.buyerRequest>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <!-- Important meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="~/img/images/favicon.ico">
+
+    <!--Title-->
+    <title> Notes - MarketPlace</title>
+
+    <!--Google Fonts-->
+
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans
+             :wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+
+    <!--Fontawesome-->
+    <link rel="stylesheet" href="~/font-awesome/css/font-awesome.css">
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="~/css/buyerrequest.css">
+
+    <!--Responsive CSS-->
+    <link rel="stylesheet" href="~/css/responsiveindex.css">
+
+    <!--For Data Tables-->
+    <link rel="stylesheet" href="~/css/DataTable.css" >
+
+</head>
+
+<body>
+
+    <!--Header-->
+    <header>
+        <nav class="navbar navbar-fixed-top">
+            <div class="container">
+                <div class="site-nav-wrapper">
+
+                    <div class="navbar-header">
+
+                        <!--Mobile menu Open Button-->
+                        <span id="mobile-nav-open-btn">&#9776;</span>
+
+                        <!--Logo-->
+                        <a href="@Url.Action("LandP","Front")" class="navbar-brand"><img src="~/home/logo.png"></a>
+                    </div>
+
+                    <div class="container">
+                        <div class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav pull-right ">
+                                <li><a href="@Url.Action("SearchNotes","Front")"> Search Notes</a></li>
+                                <li><a href="@Url.Action("dashboard","User")">Sell Your Notes</a></li>
+                                <li><a href="@Url.Action("FAQs","Front")">FAQ</a></li>
+                                <li><a href="@Url.Action("ContactUs","Front")">Contact Us</a></li>
+
+                                @if (Session["Email"] == null)
+                                {
+                                    <li><a href="@Url.Action("finalLogin","User")">Login</a></li>
+                                }
+                                else
+                                {
+
+                                    <li>
+                                        <div class="dropdown photo">
+                                            <img src="~/img/images/reviewer-1.png" class="img-circle btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="@Url.Action("MyDownloads","User")">MyDownloads</a>
+                                                <a class="dropdown-item" href="@Url.Action("MyRejectedNotes","User")">MyRejectedNotes</a>
+                                                <a class="dropdown-item" href="@Url.Action("MySoldNotes","User")">MySoldNotes</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li><a href="@Url.Action("finalLogout","User")">Logout</a></li>
+                                }
+
+
+                                <!--Mobile Menu-->
+                                <div id="mobile-nav">
+                                    <!--Mobile Menu Close Button-->
+                                    <span id="mobile-nav-close-btn">&times;</span>
+                                    <div id="mobile-nav-content">
+                                        <ul class="nav">
+                                            <li><a href="#profile" class="photo"><img src="~/img/images/reviewer-1.png" class="img-circle"></a></li>
+                                            <li><a href="finalsearch.html">Search Notes</a></li>
+                                            <li><a href="addnotes.html">Sell Your Notes</a></li>
+                                            <li><a href="FAQ.html">FAQ</a></li>
+                                            <li><a href="contactus.html">Contact Us</a></li>
+                                            <li><a href="loginfinal.html">Logout</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                        </div>
+                    </div>
+</nav>
+    </header>
+    <!--Header ends-->
+    <!--Table-->
+    <section id="buyerrequest">
+        <div class="container">
+            <div class="row search">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <h4>Buyer Requests</h4>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <form class="form-inline searchform">
+                        <div class="form-group mx-sm-3 mb-2">
+                          @*<input type="text" class="form-control" id="search" placeholder="Search">*@
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-2 searchandfilter">Search</button>
+                    </form>
+                </div>
+            </div>
+
+            @* This is for User identification *@
+            @{
+                var d1 = ViewBag.Data1;
+            }
+
+            <div class="table-responsive">
+                <table class="table" id="tableData">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-center">Sr No.</th>
+                            <th scope="col">Note Title</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Buyer</th>
+                            <th scope="col">Phone No.</th>
+                            <th scope="col">Sell Type</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Downloaded Date/Time</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{int x = 1;}
+
+                        @foreach (var item in Model)
+                        {
+
+                            if (d1.ID == item.downloads.Seller && !item.downloads.IsSellerHasAllowedDownload)
+                            {
+
+                                <tr>
+                                    <td class="text-center"><span>@(x++)</span></td>
+                                    <td>@item.downloads.NoteTitle</td>
+                                    <td>@item.downloads.NoteCategory</td>
+                                    <td>@item.users.EmailID</td>
+                                    <td>+91 7359040443</td>
+                                    <td>Paid</td>
+                                    <td>@item.downloads.PurchasePrice</td>
+                                    <td>27 Nov 2020, 11:24:34</td>
+                                    <td><img src="~/img/pre-login/eye.png"></td>
+                                    <td class="dropdown">
+                                        <img src="~/img/images/dots.png" class="dropbtn" onclick="myFunction()">
+                                        <div id="myDropdown" class="dropdown-content"><a href="@Url.Action("allowDownload", "User", new { @bID = item.downloads.Downloader })">Allow Download</a></div>
+                                    </td>
+                                </tr>
+
+                            }
+
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+
+            <nav aria-label="Page navigation example" class="text-center">
+                <ul class="pagination ">
+                    <li class="page-item prev">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true"><img src="~/img/images/arrow-down.png" class="arrow1"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                    <li class="page-item prev">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true"><img src="~/img/images/arrow-down.png" class="arrow2"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </section>
+    <hr>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <p>Copyright &#169; Tatvasoft All rights reserved.</p>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                    <ul class="social-list">
+                        <li><a href="#"><img src="~/img/home/facebook.png" alt="fb"></a></li>
+                        <li><a href="#"><img src="~/img/home/twitter.png"></a></li>
+                        <li><a href="#"><img src="~/img/home/linkedin.png"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!--JS-->
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/jquery.js"></script>
+    <script src="~/js/DataTables.js"></script>
+    <script src="~/js/buyerrequests.js"></script>
+    @*For the Data Table*@
+    <section myDataTable{
+    <script src="~/js/DataTables.js"></script>
+    <script>
+    $(document).ready(function(){
+    $('#tableData').DataTable();
+    });
+    </script>
+    }
+    >
+    <script>
+    $(document).ready( function () {
+    var table = $('table').DataTable({
+    'sDom' : '"top"i',
+    "iDisplayLength":10,
+    "binfo":false,
+    language:{
+    paginate:{
+    next:'<img src="images/images/right-arrow.png">',
+    previous:'<img src="images/images/left-arrow.png">'
+    }
+    }
+
+    }
+
+    );
+    });
+    $('.btn-search').click(function(){
+    var x = $('#search').val();
+
+    table.search(x).draw();
+    });
+    </script>
+    </section>
+
+</body>
+</html>
+

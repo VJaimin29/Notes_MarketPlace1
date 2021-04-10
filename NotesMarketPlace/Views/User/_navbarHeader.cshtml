@@ -1,0 +1,71 @@
+﻿
+<body>
+    <header>
+        <nav class="navbar navbar-fixed-top">
+            <div class="container header-container">
+                <div class="site-nav-wrapper">
+
+                    <div class="navbar-header">
+
+                        <!--Mobile menu Open Button-->
+                        <span id="mobile-nav-open-btn">&#9776;</span>
+
+                        <!--Logo-->
+                        <a href="index.html" class="navbar-brand"><img src="~/home/logo.png"></a>
+                    </div>
+
+                    <div class="container">
+                        <div class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav pull-right ">
+                                <li><a href="@Url.Action("SearchNotes","Front")"> Search Notes</a></li>
+                                <li><a href="@Url.Action("dashboard","User")">Sell Your Notes</a></li>
+                                <li><a href="@Url.Action("FAQs","Front")">FAQ</a></li>
+                                <li><a href="@Url.Action("ContactUs","Front")">Contact Us</a></li>
+
+                                @if (Session["Email"] == null)
+                                {
+                                    <li><a href="@Url.Action("finalLogin","User")">Login</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("buyerRequest","User")">Buyer Request</a></li>
+                                    <li>
+                                        <div class="dropdown photo">
+                                            <img src="~/img/images/reviewer-1.png" class="img-circle btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="@Url.Action("MyDownloads","User")">MyDownloads</a>
+                                                <a class="dropdown-item" href="@Url.Action("MyRejectedNotes","User")">MyRejectedNotes</a>
+                                                <a class="dropdown-item" href="@Url.Action("MySoldNotes","User")">MySoldNotes</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li><a href="@Url.Action("finalLogout","User")">Logout</a></li>
+                                }
+                                <li><a href="@Url.Action("finalLogout","User")">Logout</a></li>
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <!--Mobile Menu-->
+                    <div id="mobile-nav">
+                        <!--Mobile Menu Close Button-->
+                        <span id="mobile-nav-close-btn">&times;</span>
+                        <div id="mobile-nav-content">
+                            <ul class="nav">
+                                <li><a href="#profile"><img src="~/img/Customers/client-1.jpg" class="img-circle"></a></li>
+                                <li><a href="finalsearch.html">Search Notes</a></li>
+                                <li><a href="addnotes.html">Sell Your Notes</a></li>
+                                <li><a href="FAQ.html">FAQ</a></li>
+                                <li><a href="contactus.html">Contact Us</a></li>
+                                <li><a href="loginfinal.html">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
